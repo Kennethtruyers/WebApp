@@ -18,5 +18,5 @@ router.get('/', function (req, res, next) {
 
 const getIp = () => 
   Object.keys(os.networkInterfaces())
-        .map(ifname => ifaces[ifname].filter(iface => 'IPv4' === iface.family && iface.internal)
-                                                                      .map(iface => iface.address)[0])[0];
+        .map(ifname => os.networkInterfaces()[ifname].filter(iface => 'IPv4' === iface.family && iface.internal)
+                                                     .map(iface => iface.address)[0])[0];
