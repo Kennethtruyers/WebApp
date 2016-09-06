@@ -11,6 +11,6 @@ router.get('/', function (req, res, next) {
     res.render('index', {
       title: 'Generator-Express MVC',
       articles: articles,
-      ip: req.headers['x-forwarded-for']
+      location: process.env.WEBSITE_SITE_NAME
     });
 });
