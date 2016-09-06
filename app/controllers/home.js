@@ -1,7 +1,8 @@
 var express = require('express'),
   router = express.Router(),
   Article = require('../models/article'),
-  os = require('os');;
+  os = require('os'),
+  server = require('net').Server();
 
 module.exports = function (app) {
   app.use('/', router);
@@ -12,11 +13,6 @@ router.get('/', function (req, res, next) {
     res.render('index', {
       title: 'Generator-Express MVC',
       articles: articles,
-      ip: getIp()
+      ip: req.connection.localAddress
     });
 });
-
-const getIp = () => 
-  Object.keys(os.networkInterfaces())
-        .map(ifname => os.networkInterfaces()[ifname].filter(iface => 'IPv4' === iface.family && iface.internal)
-                                                     .map(iface => iface.address)[0])[0];
